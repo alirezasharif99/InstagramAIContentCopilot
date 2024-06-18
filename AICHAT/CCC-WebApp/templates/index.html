@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCC - Content Creator Companion</title>
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome to CCC Section -->
+        <section class="welcome">
+            <h1>Welcome to CCC</h1>
+            <label>Instagram Username:</label>
+            <input type="text">
+            <label>Instagram Password:</label>
+            <input type="password">
+            <button>Submit</button>
+        </section>
+        <section>
+            <h2>Image Generation</h2>
+            <form action="/" method="post">
+                <label for="prompt">Enter a Prompt:</label>
+                <input type="text" name="prompt" required>
+                <input type="submit" value="Generate Images">
+            </form>
+            <div>
+                {% if images %}
+                <h2>Generated Images</h2>
+                {% for image in images %}
+                    <img src="{{ url_for('static', filename=image.split('/')[-1]) }}" alt="Generated Image">
+                {% endfor %}
+                {% endif %}
+            </div>
+        </section>
+        <!-- Learning Basics Section -->
+        <section class="basics">
+            <h1>Let's learn some of the basics about you</h1>
+            <textarea placeholder="Tell us about your account"></textarea>
+            <textarea placeholder="Give us a few examples of similar accounts"></textarea>
+        </section>
+
+        <!-- Pick Your Default Assistant Section -->
+        <section class="assistant">
+            <h1>Pick Your Default Assistant</h1>
+            <div class="assistant-options">
+                <div>
+                    <h2>Alex</h2>
+                    <input type="checkbox" id="talksLikeYou">
+                    <label for="talksLikeYou">Talks Like You (learned from past posts)</label>
+                    <input type="checkbox" id="isChristian">
+                    <label for="isChristian">Is Christian</label>
+                </div>
+                <!-- Add more assistants as needed -->
+            </div>
+        </section>
+
+        <!-- Your Daily Suggestions Section -->
+        <section class="suggestions">
+            <h1>Your Daily Suggestions</h1>
+            <div class="post-suggestion">
+                <h2>Alex looked at your past 5 posts and generated something similar</h2>
+                <img src="placeholder-image.jpg" alt="Suggested Image">
+                <textarea placeholder="Suggested Caption"></textarea>
+                <button>Post</button>
+            </div>
+            <!-- Add more post suggestions as needed -->
+        </section>
+    </div>
+</body>
+</html>
